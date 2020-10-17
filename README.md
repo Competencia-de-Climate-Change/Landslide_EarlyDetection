@@ -16,16 +16,24 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 
 url : `gs://data-projectx`
 
-```
+```{Python}
 !pip install fsspec
 !pip install gcsfs
 
 import fsspec
 
-fsspec.get_mapper('gcs://data-projectx/')
+fs = fsspec.get_mapper('gcs://data-projectx/')
+
+# show files
+print(list(fs))
+
+# access files
+with fs.open(path, mode='rb', cache_type='readahead') as f:
+  use_for_something(f)
 ```
 
-Tutorial access see notebook example (TODO)
+* Tutorial access see notebook example (TODO)
+* [ffsspec docs](https://readthedocs.org/projects/filesystem-spec/downloads/pdf/latest/)
 
 ### Free Access to TPUs
 

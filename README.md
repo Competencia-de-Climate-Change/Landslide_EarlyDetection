@@ -16,7 +16,16 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 
 url : `gs://data-projectx`
 
-For tutorial access see notebook example (TODO)
+```
+!pip install fsspec
+!pip install gcsfs
+
+import fsspec
+
+fsspec.get_mapper('gcs://data-projectx/')
+```
+
+Tutorial access see notebook example (TODO)
 
 ### Free Access to TPUs
 

@@ -1,4 +1,6 @@
 # Landslide EarlyDetection
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/Competencia-de-Climate-Change/Landslide_EarlyDetection/master)
+
 Machine Learning Research Project: Landslide Risk based Early Detection
 
 ## Data

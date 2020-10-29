@@ -1,7 +1,7 @@
 #-----------------   STEP   -----------------#
 
 *.csv # data should be uploaded to bucket
-
+*.geojson
 
 
 #----------------- TEMPLATE -----------------#

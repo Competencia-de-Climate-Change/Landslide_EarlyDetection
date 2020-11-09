@@ -1,8 +1,10 @@
-import api_gcp as gcp
-from extraction import run_FeatureCollection
+from extraction import get_landslides
 
+import geopandas as gpd
 
-class Landslides():
+import descarteslabs as dl
+
+class Landslides(gpd.GeoDataFrame):
     """
     Class to handle landslide data.
     """
@@ -11,87 +13,75 @@ class Landslides():
         # Dataframe with nasa data
         self.landslide_nasa = get_landslides()
 
-        # FeatureCollection, geojson
-        self.feature_collection = run_FeatureCollection(
-            df=self.landslide_nasa
-            polygons=True,
-            poly_fun='v2'
-        )
-
-        # GeoDataframe
-        self.gdf = gpd_FeatureCollection(
-            dict_= self.feature_collection
-        )
+        interest_triggers = ['rain', 'downpour', 'monsoon', 'continuous_rain','snowfall_snowmelt', 'flooding']
 
 
-    def query(self, query_col, op, conditions):
+        # Geodataframe in self
+        super()__init__(self.landslide_nasa, 
+            gpd.points_from_xy(self.landslide_nasa.longitude, self.landslide_nasa.latitude)
+            )
+
+        # filters columns of interest
+        if mode == 'filtered':
+            self = self[self.landslide_trigger.isin(interest_triggers)]
+
+    @staticmethod
+    def date_interval(date, delta=1, return_str=False):
         """
-        From a given column, operation and list of conditions
-        returns a filtered dataframe.
+        Retorna el intervalo de una fecha (date). 'delta' corresponde al intervalo
+        de tiempo y 'return_str' es un argumento para decidir si retorna la fecha 
+        en forma de string o no.
+        """
+        from dateutil.relativedelta import relativedelta
+        from dateutil.parser import parse
+
+        if return_str:
+            return (parse(date) - relativedelta(days=delta)).strftime('%Y-%m-%d'), (parse(date) + relativedelta(days=delta)).strftime('%Y-%m-%d')
+
+        return parse(date) - relativedelta(days=delta), parse(date) + relativedelta(days=delta)
+
+
+    @staticmethod
+    def search_scenes(polygons, product_ids, mid_date=None, date_range=None, start_date=None, end_date=None, limit=10):
+        """
+        Search scenes from the dataframe between an interval of dates.
 
         Arguments:
         ---------
-            query_col : str
-                the column involved
-
-            op : str
-                operation to perform
-                Not taken into account when len(condition) > 1
+            product_ids : list
+                product ids, e.g. ["landsat:LC08:PRE:TOAR"]
             
-            conditions : list
-                list of possible conditions
+            mid_date : str
+                date to create an interval around. Ignored if start/end_date is given.
+            
+            date_range : int
+                size of one half of the interval. Ignored if start/end_date is given.
+
+            start_date, end_date : int, int. Optional
+                start and end date of an interval.
+            
+            limit : int 
+                maximum number of images
 
         Returns:
-        --------
-            df : filtered dataframe
+        -------
+        scenes : ndarray
+            Result from Descarteslabs
 
-        Example:
-
-        >>> query('trigger', '==', ['rain', 'downpour'])
-        ...filtered_df with landslides triggered from rain or downpour...
-
-
-        >>> query('fatality', '>=', ['100'])
-        ...filtered_df with more than a 100 deaths... 
-
+        ctx : ctx
+            Result from Descarteslabs
         """
-        df = self.gdf 
         
-        if len(conditions) > 1: ## isin operation
-            return df[df[query_col].isin(conditions)]
-
-        else: ## boolean operation
-            if op == '>':
-                cond = df[query_col] > conditions[0]
-            if op == '>=':
-                cond = df[query_col] >= conditions[0]
-            if op == '==':
-                cond = df[query_col] == conditions[0]
-            if op == '<=':
-                cond = df[query_col] <= conditions[0]
-            if op == '<':
-                cond = df[query_col] < conditions[0]
-
-            return df[cond]
-
-
-        def queries(self, list_queries):
-        """
-        From a list of self.query arguments, 
-        returns a filtered dataframe that 
-        correspond to the join of the results
-        of each query.
-        """
-        df = self.gdf 
         
-
-        dataframes = []
-
-        for query_args in list_queries:
-            if len(query_args) < 2:
-                raise ValueError("Not enough arguments for self.query")
-
-            filtered_df = self.query(query_args[0], query_args[1], query_args[2])  
-
-            dataframes.append(filtered_df)
+        if mid_date is not None and date_range is not None:
+            start_date, end_date = date_interval(self.date, delta=date_range)
+            
+        scenes, ctx = dl.scenes.search(
+            polygons
+            products=product_ids,
+            start_datetime=start_date,
+            end_datetime=end_date,
+            limit=limit
+        )
         
+        return scenes, ctx

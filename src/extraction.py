@@ -9,20 +9,21 @@ def get_landslides():
     return api_gcp.bucket_read_csv(rfpath="nasa/landslides.csv")
 
 
-def run_FeatureCollection(polygons=False, poly_fun='v1', save=False):
-    ls_df = get_landslides()
+def run_FeatureCollection(df=None, polygons=False, poly_fun='v1', save=False):
+    if df is None:
+        df = get_landslides()
 
     interest_triggers = ['rain', 'downpour', 'monsoon', 'continuous_rain','snowfall_snowmelt', 'flooding']
 
-    filtered_df = ls_df[ls_df.landslide_trigger.isin(interest_triggers)]
+    filtered_df = df[df.landslide_trigger.isin(interest_triggers)]
 
-    landslide_features = geometry.create_landslides_nasa_points(ls_df)
+    landslide_features = geometry.create_landslides_nasa_points(filtered_df)
 
 
-    if polygons and poly_fun=='v1':
+    if polygons and poly_fun =='v1':
         landslide_features = [geometry.create_Polygon_around_Point_v1(feat) for feat in landslide_features]
 
-    elif polygons and poly_fun=='v2':
+    elif polygons and poly_fun =='v2':
         landslide_features = [geometry.create_Polygon_around_Point_v2(feat) for feat in landslide_features]
 
     feature_collection = geometry.create_Collection(landslide_features)
@@ -51,6 +52,6 @@ def gpd_FeatureCollection(dict_=None, geojson_file=None):
         
         df[new_columns] = new_data_list
 
-        return df
+        return df.drop('properties', axis=1)
 
     return gpd.read_file(geojson_file)

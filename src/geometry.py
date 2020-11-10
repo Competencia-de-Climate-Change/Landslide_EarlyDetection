@@ -65,6 +65,7 @@ def geodesic_point_buffer(row, km, proj):
     import pyproj
     from shapely.ops import transform
     from shapely.geometry import Point, Polygon
+    
     # Azimuthal equidistant projection
     aeqd_proj = '+proj=aeqd +lat_0={lat} +lon_0={lon} +x_0=0 +y_0=0'
     project = partial(

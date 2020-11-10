@@ -27,28 +27,6 @@ def create_Collection(feature_list):
         aoi_point_collection["features"].append(feature)
     return aoi_point_collection
 
-def create_landslides_nasa_points(df):
-
-    from dateutil.parser import parse
-
-    point_list = []
-
-    for idx, row in df.iterrows():
-        properties_dict = {}
-
-        # properties
-        properties_dict['location']  = row['location_description']
-        properties_dict['size']      = row['landslide_size']
-        properties_dict['date']      = parse(row['event_date']).strftime('%Y-%m-%d')
-        properties_dict['category' ] = row['landslide_category']
-        properties_dict['trigger']   = row['landslide_trigger']
-        properties_dict['fatality']= row['fatality_count']
-        properties_dict['injury']  = row['injury_count']
-
-        point_list.append(create_Point(lon=row['longitude'], lat=row['latitude'], properties_dict=properties_dict))
-        
-    return point_list
-
 def create_Polygon_around_Point_v1(point):
     new_polygon = point
     new_polygon['geometry']['type'] = 'Polygon'
@@ -81,3 +59,17 @@ def create_Polygon_around_Point_v2(point, radius=1, square=False, return_shape=F
     point['geometry'] = polygon.__geo_interface__
     
     return point
+
+def geodesic_point_buffer(row, km, proj):
+    from functools import partial
+    import pyproj
+    from shapely.ops import transform
+    from shapely.geometry import Point, Polygon
+    # Azimuthal equidistant projection
+    aeqd_proj = '+proj=aeqd +lat_0={lat} +lon_0={lon} +x_0=0 +y_0=0'
+    project = partial(
+        pyproj.transform,
+        pyproj.Proj(aeqd_proj.format(lat=row.y, lon=row.x)),
+        proj)
+    buf = Point(0, 0).buffer(km * 1000)  # distance in metres
+    return Polygon(transform(project, buf).exterior.coords[:]).envelope

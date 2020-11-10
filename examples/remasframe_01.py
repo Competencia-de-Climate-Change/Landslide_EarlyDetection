@@ -22,4 +22,4 @@ idx_test = 0
 start_date, end_date = nasa_df.date_interval(nasa_df.event_date[idx_test], delta=2)
 
 # Searches scenes between start and end date
-scenes, ctx = search_scenes(nasa_df.geometry[idx_test], chirps[id], start_date=start_date, end_date=end_date, limit=10)
+scenes, ctx = search_scenes(nasa_df.geometry[idx_test], chirps['id'], start_date=start_date, end_date=end_date, limit=10)

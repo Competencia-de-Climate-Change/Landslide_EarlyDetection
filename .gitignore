@@ -2,7 +2,7 @@
 
 *.csv # data should be uploaded to bucket
 *.geojson
-
+*.png # images
 
 #----------------- TEMPLATE -----------------#
 

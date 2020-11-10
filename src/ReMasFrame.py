@@ -36,14 +36,15 @@ class ReMasFrame(gpd.GeoDataFrame):
             geometry=gpd.points_from_xy(landslide_nasa.longitude, landslide_nasa.latitude),
         )
 
-    def box(self, km, inplace=False):
+    def create_box(self, km, inplace=False):
+        import pyproj
         
         proj_wgs84 = pyproj.Proj('+proj=longlat +datum=WGS84')
 
         if inplace == True:
             self.loc[:,('box')] = self['geometry'].apply(geodesic_point_buffer, km=km, proj=proj_wgs84)
 
-        return self['geometry'].apply(geodesic_point_buffer, km=km)
+        return self['geometry'].apply(geodesic_point_buffer, km=km, proj=proj_wgs84)
 
     @staticmethod
     def get_products():

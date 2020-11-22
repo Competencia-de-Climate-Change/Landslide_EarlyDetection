@@ -69,7 +69,8 @@ class ReMasFrame(gpd.GeoDataFrame):
         from dateutil.parser import parse
 
         if return_str:
-            return (parse(date) - relativedelta(days=delta)).strftime('%Y-%m-%d'), (parse(date) + relativedelta(days=delta)).strftime('%Y-%m-%d')
+            return ((parse(date) - relativedelta(days=delta)).strftime('%Y-%m-%d'),
+                    (parse(date) + relativedelta(days=delta)).strftime('%Y-%m-%d'))
 
         return parse(date) - relativedelta(days=delta), parse(date) + relativedelta(days=delta)
 
@@ -106,7 +107,7 @@ class ReMasFrame(gpd.GeoDataFrame):
         """
         
         if mid_date is not None and date_range is not None:
-            start_date, end_date = date_interval(self.date, delta=date_range)
+            start_date, end_date = ReMasFrame.date_interval(mid_date, delta=date_range)
             
         scenes, ctx = dl.scenes.search(
             polygons,

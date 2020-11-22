@@ -9,6 +9,10 @@ global_bucket_id = 'data-projectx'
 # Functional API
 
 def create_gcsfs(bucket_id=None, token_loc=None):
+    """
+    Create a GCSFileSystem (Google Cloud Storage File System), given a 'bucket_id'
+    and 'token_loc' parameters. If anyones given, it will set by default configurations.
+    """
     if bucket_id is None: bucket_id = global_bucket_id
 
     if token_loc is None:

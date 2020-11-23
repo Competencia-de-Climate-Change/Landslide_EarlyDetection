@@ -37,14 +37,11 @@ class ReMasFrame(gpd.GeoDataFrame):
         )
 
     def create_box(self, km, inplace=False):
-        import pyproj
-        
-        proj_wgs84 = pyproj.Proj('+proj=longlat +datum=WGS84')
-
+            
         if inplace == True:
-            self.loc[:,('box')] = self['geometry'].apply(geodesic_point_buffer, km=km, proj=proj_wgs84)
+            self.loc[:,('box')] = self['geometry'].buffer(km).envelope
 
-        return self['geometry'].apply(geodesic_point_buffer, km=km, proj=proj_wgs84)
+        return self['geometry'].buffer(km).envelope
 
     @staticmethod
     def get_products():

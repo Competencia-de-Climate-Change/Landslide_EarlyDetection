@@ -5,11 +5,11 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 
 ## Data
 
-| nombre | fuente | tipo | url | formato | notebook | TODOs |
-|--------|--------|------|-----|---------|----------|-------|
-|        |        |      |     |         |          |       |
-|        |        |      |     |         |          |       |
-|        |        |      |     |         |          |       |
+| nombre | categoria | id       | funcionando | notebook_ejemplo | resolucion | TODOs |
+|--------|-----------|----------|-------------|------------------|------------|-------|
+|  ejemplo   |    `weather` |  `chirps`        |    NO         |    <a href=https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb> link </a>         |    0.9      | probar xxx|
+|        |           |          |             |                  |            |       |
+|        |           |          |             |                  |            |       |
 
 
 ## Google Compute Engine

@@ -20,17 +20,17 @@ Machine Learning Research Project: Landslide Risk based Early Detection
   <tbody>
     <tr>
       <td>ejemplo</td>
-      <td>`weather`</td>
-      <td>`codigo`</td>
+      <td><pre>weather</pre></td>
+      <td><pre>codigo</pre></td>
       <td>NO</td>
       <td>[link](ejemplo)</td>
       <td>X.XX</td>
       <td>probar xxx </td>
     </tr>
     <tr>
-      <td>'goes17:fulldisk:v1'</td>
-      <td>`weather`</td>
-      <td>`products['weather']['goes']`</td>
+      <td>goes17:fulldisk:v1</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['goes']</pre></td>
       <td>NO</td>
       <td>[link](goes)</td>
       <td>NA</td>
@@ -38,35 +38,35 @@ Machine Learning Research Project: Landslide Risk based Early Detection
     </tr>
     <tr>
       <td>GSOD Daily Interpolation Weather Product</td>
-      <td>`weather`</td>
-      <td>`products['weather']['gsod']` </td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['gsod']</pre></td>
       <td>NO</td>
       <td>[link](gsod)</td>
       <td>TODO</td>
       <td>TODO</td>
     </tr>
     <tr>
-      <td>CHIRPS Daily Precipitation Weather </td>
-      <td>`weather`</td>
-      <td>`products['weather']['chirps']` </td>
+      <td>CHIRPS Daily Precipitation Weather</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['chirps']</pre></td>
       <td>SI</td>
       <td>[link](chirps)</td>
       <td>0.05</td>
       <td>create stack</td>
     </tr>
     <tr>
-      <td>NCEP CFS-v2 Derived Daily Weather Product </td>
-      <td>`weather`</td>
-      <td>`products['weather']['cfs']` </td>
+      <td>NCEP CFS-v2 Derived Daily Weather Product</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['cfs']</pre></td>
       <td>SI</td>
       <td>[link](cfs)</td>
       <td>0.20</td>
       <td>TODO</td>
     </tr>
     <tr>
-      <td>VisMet Data </td>
-      <td>`weather`</td>
-      <td>`products['weather']['vismet']` </td>
+      <td>VisMet Data</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['vismet']</pre></td>
       <td>NO</td>
       <td>[link](vismet)</td>
       <td>NA</td>

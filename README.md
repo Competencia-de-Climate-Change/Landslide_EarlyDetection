@@ -5,12 +5,12 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 
 ## Data
 
-| nombre | categoria | id       | funcionando | notebook_ejemplo | resolucion | TODOs |
-|--------|-----------|----------|-------------|------------------|------------|-------|
-|  ejemplo   |    `weather` |  `chirps`        |    NO         |    <a href=https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb> link </a>         |    0.9      | probar xxx|
-|        |           |          |             |                  |            |       |
-|        |           |          |             |                  |            |       |
-
+| nombre      | categoria | id       | funcionando | notebook_ejemplo | resolucion | TODOs |
+|-------------|-----------|----------|-------------|------------------|------------|-------|
+|  ejemplo    | `weather` | `codigo` |    NO       | <a href=https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb> link </a>         |    0.9      | probar xxx|
+|  goes       | `weather` | `ReMasFrame.get_products()['weather']['goes']`    |   NO     |     TODO      |  TODO |  TODO     |
+|  GSOD Daily Interpolation Weather Product   |  `weather`   |   `ReMasFrame.get_products()['weather']['gsod']`      |   NO     |     TODO      |  TODO |  TODO     |
+|  CHIRPS Daily Precipitation Weather         |  `weather`   |   `ReMasFrame.get_products()['weather']['chirps']`    |   NO     |     TODO      |  TODO |  TODO     |
 
 ## Google Compute Engine
 

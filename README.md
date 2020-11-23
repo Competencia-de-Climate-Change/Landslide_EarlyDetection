@@ -13,8 +13,10 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 |  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](chirps)      |  0.9 |  TODO     |
 
 Recordatorios: 
+
 `products = ReMasFrame.get_products()`
-`buffer_size = 0.1 $\iff$ 0.1 deg $\approx$ 10km $\implies$  box de 10kmx10km aprox.`
+
+`buffer_size = 0.1 <img src="https://render.githubusercontent.com/render/math?math=\iff"> 0.1 deg $\approx$ 10km $\implies$  box de 10kmx10km aprox.`
 
 [ejemplo]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb
 [goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/goes.ipynb

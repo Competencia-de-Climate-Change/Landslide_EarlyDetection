@@ -7,11 +7,12 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 
 | nombre      | categoria | id       | funcionando | notebook_ejemplo | resolucion | TODOs |
 |-------------|-----------|----------|-------------|------------------|------------|-------|
-|  ejemplo                                    | `weather`    |   `codigo`                           |   NO     |     [link][ejemplo]     |  X.XX | probar xxx    |
+|  ejemplo                                    |  `weather`   |   `codigo`                           |   NO     |     [link][ejemplo]     |  X.XX | probar xxx    |
 |  'goes17:fulldisk:v1'                       |  `weather`   |   `products['weather']['goes']`      |   NO     |     [link][goes]        |  NA   |  NA           |
 |  GSOD Daily Interpolation Weather Product   |  `weather`   |   `products['weather']['gsod']`      |   NO     |     [link][gsod]        |  TODO |  TODO         |
 |  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](chirps)      |  0.05 |  create stack |
 |  NCEP CFS-v2 Derived Daily Weather Product  |  `weather`   |   `products['weather']['cfs']`       |   SI     |     [link](cfs)         |  0.20 |  TODO         |
+|  VisMet Data                                |  `weather`   |   `products['weather']['vismet']`    |   NO     |     [link](vismet)      |  NA   |  to product   |
 
 Recordatorios: 
 
@@ -22,10 +23,10 @@ Recordatorios:
 <img src="https://render.githubusercontent.com/render/math?math=\implies">` box de 10kmx10km aprox.`
 
 [ejemplo]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb
-[goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/goes.ipynb
-[gsod]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/gsod.ipynb
-[chirps]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/chirps.ipynb
-[cfs]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/cfs.ipynb
+[goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/examples/weather/goes.ipynb
+[gsod]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/examples/weather/gsod.ipynb
+[chirps]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/examples/weather/chirps.ipynb
+[cfs]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/examples/weather/cfs.ipynb
 
 ## Google Compute Engine
 

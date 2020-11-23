@@ -4,6 +4,7 @@
 Machine Learning Research Project: Landslide Risk based Early Detection
 
 ## Data
+
 `products = ReMasFrame.get_products()`
 
 | nombre      | categoria | id       | funcionando | notebook_ejemplo | resolucion | TODOs |

@@ -10,7 +10,7 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 |  ejemplo    | `weather` | `codigo` |    NO       | [link][ejemplo]        |    0.9      | probar xxx|
 |  'goes17:fulldisk:v1'      | `weather` | `products['weather']['goes']`    |   NO     |     [link][goes]      |  NA |  NA     |
 |  GSOD Daily Interpolation Weather Product   |  `weather`   |   `products['weather']['gsod']`      |   NO     |     [link][gsod]      |  TODO |  TODO     |
-|  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](chirps)      |  0.9 |  TODO     |
+|  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](chirps)      |  0.05 |  TODO     |
 
 Recordatorios: 
 

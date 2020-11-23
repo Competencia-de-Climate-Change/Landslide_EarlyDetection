@@ -41,7 +41,7 @@ Machine Learning Research Project: Landslide Risk based Early Detection
       <td><pre>weather</pre></td>
       <td><pre>products['weather']['gsod']</pre></td>
       <td>NO</td>
-      <td><a href="examples/weather/gsod.ipynb">link</a></td>
+      <td><a href="examples/weather/gsod.ipynb">Notebook Link</a></td>
       <td>TODO</td>
       <td>TODO</td>
     </tr>

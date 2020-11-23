@@ -33,7 +33,7 @@ class ReMasFrame(gpd.GeoDataFrame):
 
         super(ReMasFrame, self).__init__(
             landslide_nasa, 
-            geometry=gpd.points_from_xy(landslide_nasa.longitude, landslide_nasa.latitude),
+            geometry=gpd.points_from_xy(landslide_nasa.longitude, landslide_nasa.latitude, crs="EPSG:4326")
         )
 
     def create_box(self, km, inplace=False):

@@ -4,19 +4,22 @@
 Machine Learning Research Project: Landslide Risk based Early Detection
 
 ## Data
-`products = ReMasFrame.get_products()`
 
 | nombre      | categoria | id       | funcionando | notebook_ejemplo | resolucion | TODOs |
 |-------------|-----------|----------|-------------|------------------|------------|-------|
 |  ejemplo    | `weather` | `codigo` |    NO       | [link][ejemplo]        |    0.9      | probar xxx|
 |  'goes17:fulldisk:v1'      | `weather` | `products['weather']['goes']`    |   NO     |     [link][goes]      |  NA |  NA     |
 |  GSOD Daily Interpolation Weather Product   |  `weather`   |   `products['weather']['gsod']`      |   NO     |     [link][gsod]      |  TODO |  TODO     |
-|  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/chirps.ipynb)      |  0.9 |  TODO     |
+|  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](chirps)      |  0.9 |  TODO     |
+
+Recordatorios: 
+`products = ReMasFrame.get_products()`
+`buffer_size = 0.1 $\iff$ 0.1 deg $\approx$ 10km $\implies$  box de 10kmx10km aprox.`
 
 [ejemplo]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb
 [goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/goes.ipynb
 [gsod]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/gsod.ipynb
-
+[chirps]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/chirps.ipynb
 ## Google Compute Engine
 
 ### Bucket

@@ -16,7 +16,9 @@ Recordatorios:
 
 `products = ReMasFrame.get_products()`
 
-`buffer_size = 0.1 <img src="https://render.githubusercontent.com/render/math?math=\iff"> 0.1 deg $\approx$ 10km $\implies$  box de 10kmx10km aprox.`
+`buffer_size = 0.1` <img src="https://render.githubusercontent.com/render/math?math=\iff"> `0.1 deg`
+<img src="https://render.githubusercontent.com/render/math?math=\aprox"> `10km`
+<img src="https://render.githubusercontent.com/render/math?math=\implies">` box de 10kmx10km aprox.`
 
 [ejemplo]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb
 [goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/goes.ipynb

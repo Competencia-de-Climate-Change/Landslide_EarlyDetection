@@ -34,7 +34,8 @@ weather_prods = {
         'id' : 'ncep:cfsr-v2:daily:v1',
         'res' : '20km',
         'freq': 'daily',
-        'bands' : ['prec', 'snow_cover', 'snow_depth', 'snow_water', 'soilmoisti', 'sublimation', 'tavg', ]
+        'bands' : ['albedo', 'prec', 'snow_cover', 'snow_depth', 'snow_water_equivalent', 
+        'soilmoist1', 'soilmoist2', 'soilmoist3', 'tavg', 'tmax', 'tmin', 'water_runoff']
     }
 }
 

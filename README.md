@@ -4,6 +4,7 @@
 Machine Learning Research Project: Landslide Risk based Early Detection
 
 ## Data
+
 `products = ReMasFrame.get_products()`
 
 <table>
@@ -74,6 +75,7 @@ Machine Learning Research Project: Landslide Risk based Early Detection
       <td>NA</td>
     </tr>
     <tr>
+
       <td>VisMet Data</td>
       <td><pre>weather</pre></td>
       <td><pre>products['weather']['vismet']</pre></td>
@@ -84,6 +86,14 @@ Machine Learning Research Project: Landslide Risk based Early Detection
     </tr>
   </tbody>
 </table>
+
+Recordatorios: 
+
+`products = ReMasFrame.get_products()`
+
+`buffer_size = 0.1` <img src="https://render.githubusercontent.com/render/math?math=\iff"> `0.1 deg`
+<img src="https://render.githubusercontent.com/render/math?math=\approx"> `10km`
+<img src="https://render.githubusercontent.com/render/math?math=\implies">` box de 10kmx10km aprox.`
 
 ## Google Compute Engine
 
@@ -110,10 +120,6 @@ with fs.open(path, mode='rb', cache_type='readahead') as f:
 * Tutorial access see notebook example (TODO)
 * [ffsspec docs](https://readthedocs.org/projects/filesystem-spec/downloads/pdf/latest/)
 
-### Free Access to TPUs
-
-Step se consiguió TPUs gratis. Todavía no las prueba. El que se ofrezca a explorar esto bienvenido.
-Solicitar info a Step.
 
 
 ## DescartesLab
@@ -124,10 +130,3 @@ Gives access to satellite data and `Workbench` (4vCPUs, 13GB~RAM, optional GPU)
 
 If you need to access DescartesLab ask Step, Tomas or José
 
-### Data Sources
-
-| nombre |   id   | url  | formato | notebook | TODOs    |
-|--------|--------|------|---------|----------|----------|
-|        |        |      |         |          |          |
-|        |        |      |         |          |          |
-|        |        |      |         |          |          |

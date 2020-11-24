@@ -75,7 +75,6 @@ Machine Learning Research Project: Landslide Risk based Early Detection
       <td>NA</td>
     </tr>
     <tr>
-
       <td>VisMet Data</td>
       <td><pre>weather</pre></td>
       <td><pre>products['weather']['vismet']</pre></td>

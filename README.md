@@ -6,18 +6,84 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 ## Data
 `products = ReMasFrame.get_products()`
 
-| nombre      | categoria | id       | funcionando | notebook_ejemplo | resolucion | TODOs |
-|-------------|-----------|----------|-------------|------------------|------------|-------|
-|  ejemplo    | `weather` | `codigo` |    NO       | [link][ejemplo]        |    0.9      | probar xxx|
-|  'goes17:fulldisk:v1'      | `weather` | `products['weather']['goes']`    |   NO     |     [link][goes]      |  NA |  NA     |
-|  GSOD Daily Interpolation Weather Product   |  `weather`   |   `products['weather']['gsod']`      |   SI     |     [link][gsod]      |  0.2 |  TODO     |
-|  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/chirps.ipynb)      |  0.9 |  TODO     |
-|  smap:SMPL3SM_E         |  `soil_moist`   |   `products['soil_moist']['smap']`    |   SI     |     [link][smap]      |  0.9 |  TODO     |
-
-[ejemplo]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb
-[goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/goes.ipynb
-[gsod]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/gsod.ipynb
-[smap]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/soil_moist/smap.ipynb
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Categoría</th>
+      <th>ID</th>
+      <th>¿Funcionando?</th>
+      <th>Link a Notebook</th>
+      <th>Resolución</th>
+      <th>Por Hacer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>ejemplo</td>
+      <td><pre>weather</pre></td>
+      <td><pre>codigo</pre></td>
+      <td>NO</td>
+      <td><a href="examples/remasframe_01.ipynb">Notebook Link</a></td>
+      <td>X.XX</td>
+      <td>probar xxx </td>
+    </tr>
+    <tr>
+      <td>goes17:fulldisk:v1</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['goes']</pre></td>
+      <td>NO</td>
+      <td><a href="examples/weather/goes.ipynb">Notebook Link</a></td>
+      <td>NA</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <td>GSOD Daily Interpolation Weather Product</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['gsod']</pre></td>
+      <td>SI</td>
+      <td><a href="examples/weather/gsod.ipynb">Notebook Link</a></td>
+      <td>0.1</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <td>CHIRPS Daily Precipitation Weather</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['chirps']</pre></td>
+      <td>SI</td>
+      <td><a href="examples/weather/chirps.ipynb">Notebook Link</a></td>
+      <td>0.05</td>
+      <td>create stack</td>
+    </tr>
+    <tr>
+      <td>NCEP CFS-v2 Derived Daily Weather Product</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['cfs']</pre></td>
+      <td>SI</td>
+      <td><a href="examples/weather/cfs.ipynb">Notebook Link</a></td>
+      <td>0.20</td>
+      <td>TODO</td>
+    </tr>
+    <tr>
+      <td>smap:SMPL3SM_E</td>
+      <td><pre>soil_moist</pre></td>
+      <td><pre>products['soil_moist']['smap']</pre></td>
+      <td>SI</td>
+      <td><a href="examples/soil_moist/smap.ipynb">Notebook Link</a></td>
+      <td>0.1</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <td>VisMet Data</td>
+      <td><pre>weather</pre></td>
+      <td><pre>products['weather']['vismet']</pre></td>
+      <td>NO</td>
+      <td><a href="examples/weather/vismet.ipynb">Notebook Link</a></td>
+      <td>NA</td>
+      <td>to product</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Google Compute Engine
 

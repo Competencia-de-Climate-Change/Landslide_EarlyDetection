@@ -42,10 +42,10 @@ Machine Learning Research Project: Landslide Risk based Early Detection
       <td>GSOD Daily Interpolation Weather Product</td>
       <td><pre>weather</pre></td>
       <td><pre>products['weather']['gsod']</pre></td>
-      <td>NO</td>
+      <td>SI</td>
       <td><a href="examples/weather/gsod.ipynb">Notebook Link</a></td>
-      <td>TODO</td>
-      <td>TODO</td>
+      <td>0.1</td>
+      <td>NA</td>
     </tr>
     <tr>
       <td>CHIRPS Daily Precipitation Weather</td>
@@ -66,6 +66,16 @@ Machine Learning Research Project: Landslide Risk based Early Detection
       <td>TODO</td>
     </tr>
     <tr>
+      <td>smap:SMPL3SM_E</td>
+      <td><pre>soil_moist</pre></td>
+      <td><pre>products['soil_moist']['smap']</pre></td>
+      <td>SI</td>
+      <td><a href="examples/soil_moist/smap.ipynb">Notebook Link</a></td>
+      <td>0.1</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+
       <td>VisMet Data</td>
       <td><pre>weather</pre></td>
       <td><pre>products['weather']['vismet']</pre></td>
@@ -110,10 +120,6 @@ with fs.open(path, mode='rb', cache_type='readahead') as f:
 * Tutorial access see notebook example (TODO)
 * [ffsspec docs](https://readthedocs.org/projects/filesystem-spec/downloads/pdf/latest/)
 
-### Free Access to TPUs
-
-Step se consiguió TPUs gratis. Todavía no las prueba. El que se ofrezca a explorar esto bienvenido.
-Solicitar info a Step.
 
 
 ## DescartesLab
@@ -124,10 +130,3 @@ Gives access to satellite data and `Workbench` (4vCPUs, 13GB~RAM, optional GPU)
 
 If you need to access DescartesLab ask Step, Tomas or José
 
-### Data Sources
-
-| nombre |   id   | url  | formato | notebook | TODOs    |
-|--------|--------|------|---------|----------|----------|
-|        |        |      |         |          |          |
-|        |        |      |         |          |          |
-|        |        |      |         |          |          |

@@ -33,8 +33,10 @@ class ReMasFrame(gpd.GeoDataFrame):
 
         super(ReMasFrame, self).__init__(
             landslide_nasa, 
-            geometry=gpd.points_from_xy(landslide_nasa.longitude, landslide_nasa.latitude),
+            geometry=gpd.points_from_xy(landslide_nasa.longitude, landslide_nasa.latitude, crs="EPSG:4326")
         )
+
+        self.set_crs(epsg=4326)
 
     def create_box(self, km, inplace=False):
             
@@ -56,20 +58,20 @@ class ReMasFrame(gpd.GeoDataFrame):
         }
 
     @staticmethod
-    def date_interval(date, delta=1, return_str=False):
+    def date_interval(date, delta_minus=1, return_str=False):
         """
-        Retorna el intervalo de una fecha (date). 'delta' corresponde al intervalo
-        de tiempo y 'return_str' es un argumento para decidir si retorna la fecha 
-        en forma de string o no.
+        Retorna el intervalo de una fecha (date). 
+            'delta_minus' corresponde la cantidad de dias atras que se solicita 
+            'return_str' es un argumento para decidir si retorna la fecha en forma de string o no.
         """
         from dateutil.relativedelta import relativedelta
         from dateutil.parser import parse
 
         if return_str:
-            return ((parse(date) - relativedelta(days=delta)).strftime('%Y-%m-%d'),
-                    (parse(date) + relativedelta(days=delta)).strftime('%Y-%m-%d'))
+            return ((parse(date) - relativedelta(days=delta_minus)).strftime('%Y-%m-%d'),
+                    (parse(date) + relativedelta(days=1)).strftime('%Y-%m-%d'))
 
-        return parse(date) - relativedelta(days=delta), parse(date) + relativedelta(days=delta)
+        return parse(date) - relativedelta(days=delta_minus), parse(date) + relativedelta(days=1)
 
 
     @staticmethod

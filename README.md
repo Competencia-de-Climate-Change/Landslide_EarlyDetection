@@ -12,10 +12,12 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 |  'goes17:fulldisk:v1'      | `weather` | `products['weather']['goes']`    |   NO     |     [link][goes]      |  NA |  NA     |
 |  GSOD Daily Interpolation Weather Product   |  `weather`   |   `products['weather']['gsod']`      |   SI     |     [link][gsod]      |  0.2 |  TODO     |
 |  CHIRPS Daily Precipitation Weather         |  `weather`   |   `products['weather']['chirps']`    |   SI     |     [link](https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/chirps.ipynb)      |  0.9 |  TODO     |
+|  smap:SMPL3SM_E         |  `soil_moist`   |   `products['soil_moist']['smap']`    |   SI     |     [link][smap]      |  0.9 |  TODO     |
 
 [ejemplo]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/tree/main/notebooks/weather/ejemplo.ipynb
-[goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/goes.ipynb
-[gsod]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/products/gsod.ipynb
+[goes]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/goes.ipynb
+[gsod]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/weather/gsod.ipynb
+[smap]: https://github.com/Competencia-de-Climate-Change/Landslide_EarlyDetection/blob/main/examples/soil_moist/smap.ipynb
 
 ## Google Compute Engine
 

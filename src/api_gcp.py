@@ -7,7 +7,6 @@ global_project_id = 'projectx-uch'
 global_bucket_id = 'data-projectx'
 
 # Functional API
-
 def create_gcsfs(bucket_id=None, token_loc=None):
     """
     Create a GCSFileSystem (Google Cloud Storage File System), given a 'bucket_id'
@@ -30,10 +29,10 @@ def bucket_get(gcs, rdir, bucket_id=None):
 
     return gcs.get(f"{bucket_id}/{rdir}")
 
-def bucket_put(gcs, rdir, bucket_id=None):
+def bucket_put(gcs, lpath, rdir, bucket_id=None):
     if bucket_id is None: bucket_id = global_bucket_id
 
-    return gcs.put(f"{bucket_id}/{rdir}")
+    return gcs.put(lpath, f"{bucket_id}/{rdir}")
 
 def bucket_read_csv(rdir=None, rfile=None, rfpath=None, bucket_id=None):
     if bucket_id is None: bucket_id = global_bucket_id
@@ -53,7 +52,7 @@ class GCSBucket(object):
         self._bucket= bucket_id
         self._project= project_id
 
-        if token=='default':
+        if token == 'default':
             self.token= '~/.config/gcloud/application_default_credentials.json'
         else:
             self.token= token
@@ -62,16 +61,16 @@ class GCSBucket(object):
         self.gcs = create_gcsfs(bucket_id, token)
 
     
-    def ls(rdir="."):
-        return bucket_ls(self.gcs, rdir, self._bucket)
+    def ls(remote_path="."):
+        return bucket_ls(self.gcs, local_path, remote_path, self._bucket)
 
-    def get(rdir="."):
-        return bucket_get(self.gcs, rdir, self._bucket)
+    def get(remote_path="."):
+        return bucket_get(self.gcs, remote_path, self._bucket)
 
-    def put(rdir="."):
-        return bucket_put(self.gcs, rdir, self._bucket)
+    def put(local_path, remote_path="."):
+        return bucket_put(self.gcs, remote_path, self._bucket)
     
-    def read_csv(rdir, rfile):
-        return bucket_read_csv(rdir, rfile, rdir, self._bucket)
+    def read_csv(remote_path, rfile):
+        return bucket_read_csv(rdir, rfile, remote_path, self._bucket)
 
     

@@ -1,12 +1,9 @@
 import geopandas as gpd
-
-from .extraction import get_landslides
-from .products import *
-from .geometry import geodesic_point_buffer
-
+import descarteslabs as dl # pip install descarteslabs==1.5.0 !!
 from dateutil.parser import parse
 
-import descarteslabs as dl # pip install descarteslabs==1.5.0 !!
+from .extraction import get_landslides
+from .products import weather_prods, elevation, population, soil_moist
 
 #------------------------------------#
 
@@ -106,7 +103,7 @@ class ReMasFrame(gpd.GeoDataFrame):
         """
         
         if mid_date is not None and date_range is not None:
-            start_date, end_date = ReMasFrame.date_interval(mid_date, delta=date_range)
+            start_date, end_date = ReMasFrame.date_interval(mid_date, delta_minus=date_range)
             
         scenes, ctx = dl.scenes.search(
             polygons,

@@ -1,16 +1,23 @@
 import numpy as np
+import fsspec
+import gcsfs
+from pathlib import Path
+
 # import torch
 from .ReMasFrame import ReMasFrame
+from .api_gcp import GCSBucket
+
 
 class Uploader():
     r"""
     Class to automate upload of data to GCP
     """
     def __init__(self, root_dir):
-        
+        self.gstorage = GCSBucket(token='default')
         self.root_dir = root_dir
         self.products = ReMasFrame.get_products()
         self.upload_path = None
+        self.file_name = None
 
         self.event_date_str = None
         self.event_id = None
@@ -41,17 +48,46 @@ class Uploader():
         """
         Creates path dir for current event and prod
         """
-        path = f"{self.root_dir}/{self.event_date_str}_{self.event_id}/{self.current_prod}.pt"
-
+        path = f"{self.root_dir}/{self.event_date_str}_{self.event_id}/"
+        file_name = f"{self.current_prod}.npy"
         self.upload_path = path
-        return path
+        self.file_name = file_name
+        return path, file_name
     
+    def fill_value(self, masked_array, method='mean'):
+        """
+        Fills masked value with mean of each image in a 4d array
+
+        e.g: 
+        x is (bs, channels, w, h)
+        for each image:
+         >   for each channel:
+                image.fill_value = image.mean()
+                image.filled()
+        """
+        if method != 'mean':
+            raise NotImplementedError
+
+        for image in masked_array:
+            for channel in image:
+                channel.fill_value = channel.mean()
+                channel.filled()
+
+        return masked_array
+        
+
     def upload_current_stack(self):
         """
-        Creates path dir for current event and prod
+        Uploads current stack to current upload_path.
         """
-        #  = 
-        pass
+        Path(self.upload_path).mkdir(parents=True, exist_ok=True)
+        np.save(f"{self.upload_path}/{self.file_name}", self.current_stack)
+
+        self.gstorage.put(
+            local_path=f"{self.upload_path}/{self.file_name}", 
+            remote_path=f"{self.upload_path}"
+            )
+        Path(f"{self.upload_path}/{self.file_name}").unlink()
 
     def get_scenes(self, res, buffer_size=0.1):
         """

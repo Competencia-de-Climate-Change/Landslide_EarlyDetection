@@ -10,6 +10,7 @@ Check logs:
 import subprocess
 from datetime import datetime
 import numpy as np
+from dateutil.parser import parse
 
 from ..src.uploader import Uploader # pylint: disable=relative-beyond-top-level
 from ..src.ReMasFrame import ReMasFrame # pylint: disable=relative-beyond-top-level
@@ -94,6 +95,8 @@ def smap_workflow(upload):
     """
     Runs soil moisture workflow
     """
+    if parse(upload.event_date_str) < parse('2015-03-31'):
+        raise IndexError(f"SMAP not available for current date : {upload.event_date_str}")
     _, _ = get_smap(upload, update=True)
 
     _ = upload.fill_value(method='mean', update=True)

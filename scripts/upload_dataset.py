@@ -132,7 +132,8 @@ def upload_landslides(landslide_df, upload):
             else:
                 upload = default_workflow(upload)
         except Exception as e:  # pylint: disable=broad-except
-            command = f"echo '{e}'>> {LOG_FILE_NAME}"
+            command = f"echo 'Not succesful upload for idx: {event_idx} and product:" + \
+                      f"{upload.current_prod}' >> {LOG_FILE_NAME}"
             process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
             _, _ = process.communicate()
             continue
@@ -158,6 +159,7 @@ def upload_landslides(landslide_df, upload):
                       f"{upload.current_prod}' >> {LOG_FILE_NAME}"
             process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
             _, _ = process.communicate()
+            continue
 
 
 def main():

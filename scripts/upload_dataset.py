@@ -10,6 +10,7 @@ Check logs:
 import subprocess
 from datetime import datetime
 import numpy as np
+from dateutil.parser import parse
 
 from ..src.uploader import Uploader # pylint: disable=relative-beyond-top-level
 from ..src.ReMasFrame import ReMasFrame # pylint: disable=relative-beyond-top-level
@@ -103,8 +104,14 @@ def default_workflow(upload):
     """
     Runs default workflow
     """
+    # if csf and date <= 2011-03-31 => change id and res to old cfs
+    current_is_cfs = upload.current_prod == 'cfs' 
+    date_is_cfs_v1 = parse(upload.event_date_str) <= parse('2011-03-31')
+    if current_is_cfs and date_is_cfs_v1:
+        upload.current_prod = upload.current_prod.replace('v2:', 'v1:')
+        upload.current_deg_res += 0.1
+
     # update argument saves data in object
-    
     _, _ = upload.get_scenes(update=True)
     
     _ = upload.create_stack(update=True)
@@ -161,7 +168,7 @@ def upload_landslides(landslide_df, upload):
         except Exception as exception_error:  # pylint: disable=broad-except
             print(
                 f"Not succesful upload for idx: {event_idx} and product:" + \
-                f"{upload.current_prod}' -- {str(e)}"
+                f"{upload.current_prod}' -- {str(exception_error)}"
             )
             # manage exception by saving a log of non succesful uploads
             command = f"echo 'Not succesful upload for idx: {event_idx} and product:" + \
@@ -175,7 +182,7 @@ def main():
     """
     Main Program to upload dataset for all of the products
     """
-    upload = Uploader('dataset', token='cloud')
+    upload = Uploader('dataset', token='default')
     landslide_df = ReMasFrame()
     products = landslide_df.get_products()
 

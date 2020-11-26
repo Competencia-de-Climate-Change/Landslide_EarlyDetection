@@ -104,9 +104,8 @@ def default_workflow(upload):
     Runs default workflow
     """
     # update argument saves data in object
-    
     _, _ = upload.get_scenes(update=True)
-    
+
     _ = upload.create_stack(update=True)
 
     _ = upload.fill_value(method='mean', update=True)
@@ -120,7 +119,7 @@ def upload_landslides(landslide_df, upload):
     """
     for event_idx, series in landslide_df.iterrows():
         upload.set_current_event(
-            event_date=series.event_date,
+            event_date='negative',
             event_id=event_idx,
             event_geometry=series.geometry
         )
@@ -132,7 +131,7 @@ def upload_landslides(landslide_df, upload):
                 upload = smap_workflow(upload)
             else:
                 upload = default_workflow(upload)
-        except (Exception, IndexError) as exception_error:  # pylint: disable=broad-except
+        except (IndexError, Exception) as exception_error:  # pylint: disable=broad-except
             print(
                 f"Not succesful workflow for idx: {event_idx} and product:" + \
                 f"{upload.current_prod}' -- {str(exception_error)}"
@@ -169,13 +168,14 @@ def upload_landslides(landslide_df, upload):
             process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
             _, _ = process.communicate()
             continue
+        break
 
 
 def main():
     """
     Main Program to upload dataset for all of the products
     """
-    upload = Uploader('dataset', token='cloud')
+    upload = Uploader('dataset/negative', token='cloud')
     landslide_df = ReMasFrame()
     products = landslide_df.get_products()
 
@@ -190,7 +190,7 @@ def main():
             upload.set_current_prod(cat_name, product_name, bands, deg_res)
 
             upload_landslides(landslide_df, upload)
-            
+            break
 
 
 if __name__ == "__main__":

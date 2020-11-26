@@ -10,8 +10,8 @@ class Uploader():
     r"""
     Class to automate upload of data to GCP
     """
-    def __init__(self, root_dir):
-        self.gstorage = GCSBucket(token='default')
+    def __init__(self, root_dir, token='default'):
+        self.gstorage = GCSBucket(token=token)
         self.root_dir = root_dir
         self.products = ReMasFrame.get_products()
         self.upload_path = None

@@ -182,7 +182,7 @@ def main():
     # THIS CAN BE DONE IN PARALLEL
     for cat_name, products_dict in products.items():
         for product_name, product_config in products_dict.items():
-            if product_name in ['goes', 'population']: # undefined deg_res
+            if product_name != 'cfs': # undefined deg_res
                 continue
             print(product_name)
             bands = product_config['bands']

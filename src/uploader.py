@@ -198,6 +198,7 @@ class Uploader():
             end_date=end_date
         )
         if not scenes:
+            print(len(scenes), start_date, end_date)
             error_str = f"El conjunto de escenas está vacía para {product_id}, {self.event_id}"
             raise IndexError(error_str)
 

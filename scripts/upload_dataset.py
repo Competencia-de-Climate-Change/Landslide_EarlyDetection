@@ -56,7 +56,7 @@ def get_smap(upload, bands=None, axis=1, update=False):
     Retrieves SMAP at given location by upload object
     """
 
-    scenes, ctx, _, _ = upload.get_scenes()
+    (scenes, ctx), _ = upload.get_scenes()
 
     bands = upload.current_bands if bands is None else bands
 
@@ -161,7 +161,7 @@ def upload_landslides(landslide_df, upload):
         except Exception as exception_error:  # pylint: disable=broad-except
             print(
                 f"Not succesful upload for idx: {event_idx} and product:" + \
-                f"{upload.current_prod}' -- {str(exception_error)}"
+                f"{upload.current_prod}' -- {str(e)}"
             )
             # manage exception by saving a log of non succesful uploads
             command = f"echo 'Not succesful upload for idx: {event_idx} and product:" + \

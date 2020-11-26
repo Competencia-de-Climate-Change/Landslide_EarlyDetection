@@ -10,6 +10,7 @@ Check logs:
 import subprocess
 from datetime import datetime
 import numpy as np
+import geopandas as gpd
 
 from ..src.uploader import Uploader # pylint: disable=relative-beyond-top-level
 from ..src.ReMasFrame import ReMasFrame # pylint: disable=relative-beyond-top-level
@@ -56,7 +57,7 @@ def get_smap(upload, bands=None, axis=1, update=False):
     Retrieves SMAP at given location by upload object
     """
 
-    scenes, ctx, _, _ = upload.get_scenes()
+    (scenes, ctx), _ = upload.get_scenes()
 
     bands = upload.current_bands if bands is None else bands
 
@@ -119,7 +120,7 @@ def upload_landslides(landslide_df, upload):
     """
     for event_idx, series in landslide_df.iterrows():
         upload.set_current_event(
-            event_date='negative',
+            event_date=series.event_date,
             event_id=event_idx,
             event_geometry=series.geometry
         )
@@ -131,7 +132,7 @@ def upload_landslides(landslide_df, upload):
                 upload = smap_workflow(upload)
             else:
                 upload = default_workflow(upload)
-        except (IndexError, Exception) as exception_error:  # pylint: disable=broad-except
+        except (IndexError) as exception_error:  # pylint: disable=broad-except
             print(
                 f"Not succesful workflow for idx: {event_idx} and product:" + \
                 f"{upload.current_prod}' -- {str(exception_error)}"
@@ -168,7 +169,7 @@ def upload_landslides(landslide_df, upload):
             process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
             _, _ = process.communicate()
             continue
-        break
+
 
 
 def main():
@@ -176,8 +177,8 @@ def main():
     Main Program to upload dataset for all of the products
     """
     upload = Uploader('dataset/negative', token='cloud')
-    landslide_df = ReMasFrame()
-    products = landslide_df.get_products()
+    df_points__ = gpd.read_file("Landslide_EarlyDetection/data/no_landslide.shp")
+    products = ReMasFrame.get_products()
 
     # THIS CAN BE DONE IN PARALLEL
     for cat_name, products_dict in products.items():
@@ -189,8 +190,8 @@ def main():
             deg_res = product_config['deg_res']
             upload.set_current_prod(cat_name, product_name, bands, deg_res)
 
-            upload_landslides(landslide_df, upload)
-            break
+            upload_landslides(df_points__, upload)
+
 
 
 if __name__ == "__main__":

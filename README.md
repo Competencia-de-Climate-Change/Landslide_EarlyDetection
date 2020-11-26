@@ -75,6 +75,24 @@ Machine Learning Research Project: Landslide Risk based Early Detection
       <td>NA</td>
     </tr>
     <tr>
+      <td>aster:gdem3:v0</td>
+      <td><pre>elevation</pre></td>
+      <td><pre>products['eleveation']['asger']</pre></td>
+      <td>SI</td>
+      <td><a href="examples/eleveation/asger.ipynb">Notebook Link</a></td>
+      <td>0.001</td>
+      <td>NA</td>
+    </tr>
+    <tr>
+      <td>GPW_Population_Density_V4_0<sup>1</sup></td>
+      <td><pre>population</pre></td>
+      <td><pre>products['population']['population']</pre></td>
+      <td>SI</td>
+      <td><a href="examples/population/population.ipynb">Notebook Link</a></td>
+      <td>NA</td>
+      <td>NA</td>
+    </tr>
+    <tr>
       <td>VisMet Data</td>
       <td><pre>weather</pre></td>
       <td><pre>products['weather']['vismet']</pre></td>
@@ -85,8 +103,10 @@ Machine Learning Research Project: Landslide Risk based Early Detection
     </tr>
   </tbody>
 </table>
+<sup>1</sup> : Actual id is `d15c019579fa0985f7006094bba7c7288f830e1f:GPW_Population_Density_V4_0`
 
-Recordatorios: 
+
+### Recordatorios: 
 
 `products = ReMasFrame.get_products()`
 

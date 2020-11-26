@@ -193,12 +193,13 @@ class Uploader():
         aoi = self.event_geometry.buffer(buffer_size).envelope
         
         # if cfs and date <= 2011-03-31 => change id and res to old cfs
-        current_is_cfs = self.current_prod == 'cfs' 
+        current_is_cfs = self.current_prod == 'cfs'
         date_is_cfs_v1 = parse(self.event_date_str) <= parse('2011-03-31')
         if current_is_cfs and date_is_cfs_v1:
             product_id = product_id.replace('v2:', 'v1:')
             self.current_deg_res += 0.1
-            
+        
+        print(self.current_deg_res)
         scenes, ctx = ReMasFrame.search_scenes(
             aoi,
             product_id,
@@ -210,6 +211,7 @@ class Uploader():
             error_str = f"El conjunto de escenas está vacía para {product_id}, {self.event_id}"
             raise IndexError(error_str)
         
+        print(self.current_deg_res)
         new_ctx = ctx.assign(resolution=self.current_deg_res)
         
         if current_is_cfs and date_is_cfs_v1: # restore deg_res

@@ -1,8 +1,9 @@
 import geopandas as gpd
 import descarteslabs as dl # pip install descarteslabs==1.5.0 !!
 from dateutil.parser import parse
-
+from dateutil.relativedelta import relativedelta
 from .extraction import get_landslides
+
 from .products import weather_prods, elevation, population, soil_moist
 
 #------------------------------------#
@@ -61,12 +62,11 @@ class ReMasFrame(gpd.GeoDataFrame):
             'delta_minus' corresponde la cantidad de dias atras que se solicita 
             'return_str' es un argumento para decidir si retorna la fecha en forma de string o no.
         """
-        from dateutil.relativedelta import relativedelta
-        from dateutil.parser import parse
+
 
         if return_str:
             return ((parse(date) - relativedelta(days=delta_minus)).strftime('%Y-%m-%d'),
-                    (parse(date) + relativedelta(days=1)).strftime('%Y-%m-%d'))
+                    parse(date))
 
         return parse(date) - relativedelta(days=delta_minus), parse(date) + relativedelta(days=1)
 
@@ -90,7 +90,7 @@ class ReMasFrame(gpd.GeoDataFrame):
             start_date, end_date : int, int. Optional
                 start and end date of an interval.
             
-            limit : int 
+            limit : int
                 maximum number of images
 
         Returns:

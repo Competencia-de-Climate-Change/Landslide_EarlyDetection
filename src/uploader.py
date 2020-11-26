@@ -209,7 +209,7 @@ class Uploader():
         if not scenes:
             print(len(scenes), start_date, end_date)
             if current_is_cfs and date_is_cfs_v1:
-                 self.current_deg_res -= 0.1
+                self.current_deg_res -= 0.1
             error_str = f"El conjunto de escenas está vacía para {product_id}, {self.event_id}"
             raise IndexError(error_str)
         

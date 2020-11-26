@@ -131,7 +131,7 @@ def upload_landslides(landslide_df, upload):
                 upload = smap_workflow(upload)
             else:
                 upload = default_workflow(upload)
-        except Exception as e:  # pylint: disable=broad-except
+        except Exception as exception_error:  # pylint: disable=broad-except
             command = f"echo 'Not succesful upload for idx: {event_idx} and product:" + \
                       f"{upload.current_prod}' >> {LOG_FILE_NAME}"
             process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)

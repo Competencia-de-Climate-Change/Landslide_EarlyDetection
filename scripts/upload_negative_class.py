@@ -12,8 +12,8 @@ from datetime import datetime
 import numpy as np
 import geopandas as gpd
 
-from .src.uploader import Uploader # pylint: disable=relative-beyond-top-level
-from .src.ReMasFrame import ReMasFrame # pylint: disable=relative-beyond-top-level
+from ..src.uploader import Uploader # pylint: disable=relative-beyond-top-level
+from ..src.ReMasFrame import ReMasFrame # pylint: disable=relative-beyond-top-level
 
 NOW = datetime.now().strftime("%Y_%m_%d_%H_%M")
 LOG_FILE_NAME = f"log_{NOW}.txt"

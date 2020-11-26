@@ -160,7 +160,7 @@ def upload_landslides(landslide_df, upload):
         except (Error, Exception) as exception_error:  # pylint: disable=broad-except
             print(
                 f"Not succesful upload for idx: {event_idx} and product:" + \
-                f"{upload.current_prod}' -- {str(e)}"
+                f"{upload.current_prod}' -- {str(exception_error)}"
             )
             # manage exception by saving a log of non succesful uploads
             command = f"echo 'Not succesful upload for idx: {event_idx} and product:" + \

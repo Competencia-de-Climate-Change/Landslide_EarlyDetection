@@ -131,7 +131,7 @@ def upload_landslides(landslide_df, upload):
                 upload = smap_workflow(upload)
             else:
                 upload = default_workflow(upload)
-        except (Error, Exception) as exception_error:  # pylint: disable=broad-except
+        except (IndexError, Exception) as exception_error:  # pylint: disable=broad-except
             print(
                 f"Not succesful workflow for idx: {event_idx} and product:" + \
                 f"{upload.current_prod}' -- {str(exception_error)}"
@@ -157,7 +157,7 @@ def upload_landslides(landslide_df, upload):
         _, _ = upload.create_upload_path(update=True)
         try:
             upload.upload_current_stack()
-        except (Error, Exception) as exception_error:  # pylint: disable=broad-except
+        except Exception as exception_error:  # pylint: disable=broad-except
             print(
                 f"Not succesful upload for idx: {event_idx} and product:" + \
                 f"{upload.current_prod}' -- {str(exception_error)}"

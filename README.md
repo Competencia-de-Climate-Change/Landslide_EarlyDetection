@@ -115,10 +115,14 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 <img src="https://render.githubusercontent.com/render/math?math=\implies">` box de 10kmx10km aprox.`
 
 ## Google Compute Engine
+### Instance 
+
+* ssh personal: `gcloud beta compute ssh --zone "us-east1-d" "projectx-training-uch" --project "projectx-uch"`
+* ssh jupyter: `gcloud beta compute ssh --zone "us-east1-d" "jupyter@projectx-training-uch" --project "projectx-uch"`
 
 ### Bucket
 
-url : `gs://data-projectx`
+* url : `gs://data-projectx`
 
 ```{Python}
 !pip install fsspec
@@ -143,9 +147,10 @@ with fs.open(path, mode='rb', cache_type='readahead') as f:
 
 ## DescartesLab
 
+* url : <a href="workbench.descarteslabs.com/">Workbench</a>
 Gives access to satellite data and `Workbench` (4vCPUs, 13GB~RAM, optional GPU)
 
 ### Credentials
 
-If you need to access DescartesLab ask Step, Tomas or José
+If you need to access use your given email (usually @ug.uchile.cl)
 

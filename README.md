@@ -150,7 +150,7 @@ with fs.open(path, mode='rb', cache_type='readahead') as f:
 * url : <a href="workbench.descarteslabs.com/">Workbench</a>
 Gives access to satellite data and `Workbench` (4vCPUs, 13GB~RAM, optional GPU)
 
-### Credentials
+## Credentials
 
 If you need to access use your given email (usually @ug.uchile.cl)
 

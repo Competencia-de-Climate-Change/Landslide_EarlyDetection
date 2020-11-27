@@ -73,7 +73,7 @@ def get_smap(upload, bands=None, axis=1, update=False):
 
     # reshape to be (bs, channel, w, h)
     old_shape = list(composite.shape)
-    new_shape = tuple(old_shape[0], 1, old_shape[1], old_shape[2])
+    new_shape = tuple((old_shape[0], 1, old_shape[1], old_shape[2]))
     composite = composite.reshape(new_shape)
 
     if update:
@@ -176,16 +176,19 @@ def main():
     """
     Main Program to upload dataset for all of the products
     """
-    upload = Uploader('dataset/negative', token='default')
+    upload = Uploader('dataset/negative', token='cloud')
     df_points__ = gpd.read_file("Landslide_EarlyDetection/data/no_landslide.shp")
     products = ReMasFrame.get_products()
 
     # THIS CAN BE DONE IN PARALLEL
     for cat_name, products_dict in products.items():
         for product_name, product_config in products_dict.items():
-            if product_name in ['goes', 'population']: # undefined deg_res
+#             if product_name in ['goes', 'population']: # undefined deg_res
+#                 continue
+            if product_name not in ['smap', 'aster']:
                 continue
             print(product_name)
+            
             bands = product_config['bands']
             deg_res = product_config['deg_res']
             upload.set_current_prod(cat_name, product_name, bands, deg_res)

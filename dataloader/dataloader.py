@@ -6,9 +6,10 @@ Module that give data from Satelite Module
 More information about Satelite Module in satelite.py
 
 """
-from satelite import Aster, CHIRPS, CFS, GSOD, SMAP
+from satelite import CHIRPS, CFS, GSOD
 
 import numpy as np
+import torch 
 
 class DataLoader():
 
@@ -23,12 +24,10 @@ class DataLoader():
             Length of batch
 
         """
-        self.satellites = np.array([ # There is a better way to do this.
-                Aster(), 
+        self.satellites = np.array([ # There is a better way to do this. 
                 CHIRPS(), 
                 CFS(), 
                 GSOD(), 
-                SMAP()
         ])
 
     def get_satellites(self):
@@ -41,11 +40,30 @@ class DataLoader():
         
         return self.satellites
        
-    def create_dataset(self):
-        """
-        Create and return a dataset
-
-        returntype: np.array
-            Dataset
-        """
-        pass
+    def get_data_from_satellites_by_cluster(self, cluster=False):
+        data = []
+        for satelite in self.get_satellites():
+            if cluster:
+                data.append(satelite.get_negative_data())
+            else:
+                data.append(satelite.get_positive_data())
+        return data
+    
+        
+    def get_positive_data_from_satellites(self):
+        return self.get_data_from_satellites_by_cluster(cluster=True)
+    
+    def get_negative_data_from_satellites(self):
+        return self.get_data_from_satellites_by_cluster()
+    
+    def create_dataset_by_cluster(self, cluster=False):
+        data = self.get_positive_data_from_satellites() if cluster else self.get_negative_data_from_satellites()
+        final_data = torch.cat(data, 2)
+        
+        return final_data
+    
+    def create_positive_dataset(self):
+        return self.create_dataset_by_cluster(cluster=True)
+    
+    def create_negative_dataset(self):
+        return self.create_dataset_by_cluster()

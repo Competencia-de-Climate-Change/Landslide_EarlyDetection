@@ -6,7 +6,7 @@ Module that give data from Satelite Module
 More information about Satelite Module in satelite.py
 
 """
-from satelite import CHIRPS, CFS, GSOD
+from satelite import CHIRPS, CFS, GSOD, Aster
 
 import numpy as np
 import torch 
@@ -25,9 +25,10 @@ class DataLoader():
 
         """
         self.satellites = np.array([ # There is a better way to do this. 
-                CHIRPS(), 
-                CFS(), 
-                GSOD(), 
+                CHIRPS(),
+                CFS(),
+                GSOD(),
+		Aster(),
         ])
 
     def get_satellites(self):

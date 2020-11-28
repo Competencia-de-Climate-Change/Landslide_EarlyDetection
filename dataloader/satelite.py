@@ -95,6 +95,8 @@ The data has 4 categories, each category has satellite asociated:
         - Precision
 """
 import os
+import multiprocessing
+import logging
 
 import torch
 import torch.nn.functional as F
@@ -112,7 +114,7 @@ class Satelite():
         
         Parameters:
         --------
-        
+    
         path: string
             Path to Satelite Data 
             
@@ -142,15 +144,15 @@ class Satelite():
         return self.negative_path
     
     def get_sample_data(self):
-        dirs = get_dirs()
-        path_to_sample = self.get_negative_path() + dirs[0] + '/X.npy'
+        dirs = get_dirs(positive=True)
+        path_to_sample = self.get_positive_path() + dirs[0] + '/X.npy'
         
         return np.load(path_to_sample).astype(np.float32)
     
     
     def get_days(self):
         return self.get_sample_data().shape[0]
-    
+   
     def get_data_by_cluster(self, cluster=False):
         """
         Create a Dataset by Cluster
@@ -165,39 +167,46 @@ class Satelite():
             Tensor with dataset.
         
         """
-        
-        dirs = get_dirs(positive=cluster)
-        
+        MAX_CORES = os.cpu_count()
+        pool = multiprocessing.Pool(MAX_CORES)
+
+        dirs = get_dirs(positive=cluster)[0:800]
         path = self.get_positive_path() if cluster else self.get_negative_path()
         size = len(dirs)
         
         data_tensor = torch.zeros((size, self.get_days(), self.get_channels(), 224, 224))
         
-        progress = 0
-        for i, directory in enumerate(dirs): # O(n)
-            path_file = path + directory + '/X.npy'
-            a_data = np.load(path_file).astype(np.float32) # X.npy (9, c, w, h)
-            dim = a_data.shape
-            a_data = F.interpolate(torch.tensor(a_data), size=[224, 224])
-            assert(a_data.shape == (dim[0], dim[1], 224, 224))
-            data_tensor[i] = a_data
-            progress += 1
-            percentage = round(progress/size * 100, 2)
-            print(f"{self.get_name()}: loading data: {percentage}%", end='\r')
-       
-        return data_tensor
+        def worker(sub_array_i, dirs, data_tensor):
+            process = 0
+            for i in sub_array_i:
+                path_file = path + dirs[i] + '/X.npy'
+                a_data = np.load(path_file).astype(np.float32) # X.npy (9, c, w, h)
+                dim = a_data.shape
+                a_data = F.interpolate(torch.tensor(a_data), size=[224, 224])
+                assert(a_data.shape == (dim[0], dim[1], 224, 224))
+                data_tensor[i] = a_data
         
+        data_inputs = []
+
+        it = list(range(len(dirs)))
+        
+        for i in range(MAX_CORES):
+            cut = i + len(dirs)//MAX_CORES
+            args = (it[i:cut], dirs, data_tensor)
+            data_inputs.append(args)
+        
+        pool.map(worker, data_inputs)
+        pool.close()
+        pool.join()
+
+        return data_tensor
         
     def get_positive_data(self):
         return self.get_data_by_cluster(cluster=True)
     
     def get_negative_data(self):
         return self.get_data_by_cluster()
-        
-            
-    def get_dirs(self):
-        return [f.path for f in os.scandir(self.get_path()) if f.is_dir()]
-    
+
     def get_width(self):
         """
         Get Width data

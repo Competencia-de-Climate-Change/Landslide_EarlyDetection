@@ -87,7 +87,7 @@ def elevation_workflow(upload):
     """
     Runs elevation workflow
     """
-    _, _ = get_dem(upload, bands='heigth', update=True)
+    _, _ = get_dem(upload, bands='height', update=True)
     return upload
 
 def smap_workflow(upload):
@@ -183,7 +183,7 @@ def main():
     # THIS CAN BE DONE IN PARALLEL
     for cat_name, products_dict in products.items():
         for product_name, product_config in products_dict.items():
-            if product_name != 'cfs': # undefined deg_res
+            if product_name != 'aster': # undefined deg_res
                 continue
             print(product_name)
             bands = product_config['bands']

@@ -12,25 +12,36 @@ from satelite import CHIRPS
 chirps = CHIRPS()
 
 dirs = np.array(get_dirs(positive=True))
-size = dirs.shape[0]
+size = 80
 
 tensor = torch.zeros((size, chirps.get_days(), chirps.get_channels(), 224, 224))
 
 del chirps
 
-def extract(i):
-    a_data = np.load(DATASET_POSITIVE_CHIRPS_PATH + dirs[i] + '/X.npy').astype(np.float32)
-    dim = a_data.shape
-    a_data = F.interpolate(torch.tensor(a_data), size=[224,224])
-    tensor[i]=a_data
+def extract(a_range):
+    for i in a_range:
+        a_data = np.load(DATASET_POSITIVE_CHIRPS_PATH + dirs[i] + '/X.npy').astype(np.float32)
+        dim = a_data.shape
+        a_data = F.interpolate(torch.tensor(a_data), size=[224,224])
+        tensor[i]=a_data
 
 if __name__=='__main__':
     MAX_CORES = os.cpu_count()
-    PATH_TO_BUCKET = '../../data-step/clean_dataset/'
+    PATH_TO_BUCKET = '../../tensors/'
     p = Pool(MAX_CORES)
+    
+    p_args = []
+    
+    b = 80*int(sys.argv[1])
 
-    for i, _ in enumerate(p.imap(extract, range(size)), 1):
-        sys.stderr.write('\rdone {0:%}'.format(i/size))
+    for i in range(MAX_CORES):
+        s = b + i*10
+        e = b + (i+1)*10
+        p_args.append(np.arange(s, e))
+    
+    p_args = np.array(p_args)
+
+    p.imap(extract, p_args)
     p.close()
 
-    torch.save(tensor, PATH_TO_BUCKET + 'positive/chirps.pt')
+    torch.save(tensor, PATH_TO_BUCKET + f'positive/chirps/chirps{b}.pt')

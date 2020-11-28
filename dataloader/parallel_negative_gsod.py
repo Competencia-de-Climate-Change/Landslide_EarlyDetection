@@ -6,21 +6,21 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 
-from path import get_dirs, DATASET_POSITIVE_CFS_PATH
-from satelite import CFS
+from path import get_dirs, DATASET_NEGATIVE_GSOD_PATH
+from satelite import GSOD
 
-cfs = CFS()
+gsod = GSOD()
 
-dirs = np.array(get_dirs(positive=True))
+dirs = np.array(get_dirs())
 size = 80
 
-tensor = torch.zeros((size, cfs.get_days(), cfs.get_channels(), 224, 224))
+tensor = torch.zeros((size, gsod.get_days(), gsod.get_channels(), 224, 224))
 
-del cfs
+del gsod
 
 def extract(a_range):
     for i in a_range:
-        a_data = np.load(DATASET_POSITIVE_CFS_PATH + dirs[i] + '/X.npy').astype(np.float32)
+        a_data = np.load(DATASET_NEGATIVE_GSOD_PATH + dirs[i] + '/X.npy').astype(np.float32)
         dim = a_data.shape
         a_data = F.interpolate(torch.tensor(a_data), size=[224,224])
         tensor[i]=a_data
@@ -32,11 +32,11 @@ if __name__=='__main__':
     
     p_args = []
     
-    b = 80*int(sys.argv[1])
+    b = 75*int(sys.argv[1])
 
     for i in range(MAX_CORES):
-        s = b + i*10
-        e = b + (i+1)*10
+        s = b + i*(size//MAX_CORES)
+        e = b + (i+1)*(size//MAX_CORES)
         p_args.append(np.arange(s, e))
     
     p_args = np.array(p_args)
@@ -44,4 +44,4 @@ if __name__=='__main__':
     p.imap(extract, p_args)
     p.close()
 
-    torch.save(tensor, PATH_TO_BUCKET + f'positive/cfs{b}.pt')
+    torch.save(tensor, PATH_TO_BUCKET + f'negative/gsod/gsod{b}.pt')

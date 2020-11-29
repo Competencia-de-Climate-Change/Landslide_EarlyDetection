@@ -7,13 +7,13 @@ Else, gonna point to Google Cloud Storage Path
 """
 import os
 
-DATASET_POSITIVE_CHIRPS_PATH = '../../dataset/chirps/'
-DATASET_POSITIVE_CFS_PATH = '../../dataset/cfs/'
-DATASET_POSITIVE_GSOD_PATH = '../../dataset/gsod/'
+DATASET_POSITIVE_CHIRPS_PATH = '../../data-step/dataset/chirps/'
+DATASET_POSITIVE_CFS_PATH = '../../data-step/dataset/cfs/'
+DATASET_POSITIVE_GSOD_PATH = '../../data-step/dataset/gsod/'
 
-DATASET_NEGATIVE_CHIRPS_PATH = '../../dataset/negative/chirps/'
-DATASET_NEGATIVE_CFS_PATH = '../../dataset/negative/cfs/'
-DATASET_NEGATIVE_GSOD_PATH = '../../dataset/negative/gsod/'
+DATASET_NEGATIVE_CHIRPS_PATH = '../../data-step/dataset/negative/chirps/'
+DATASET_NEGATIVE_CFS_PATH = '../../data-step/dataset/negative/cfs/'
+DATASET_NEGATIVE_GSOD_PATH = '../../data-step/dataset/negative/gsod/'
 
 
 def generate_dirs(chirps, cfs, gsod):

@@ -1,5 +1,6 @@
 import os
 import sys
+from multiprocessing import Pool
 
 import torch
 import torch.nn.functional as F
@@ -38,7 +39,7 @@ if __name__=='__main__':
     for i in range(MAX_CORES):
         s = b + i*(size//MAX_CORES)
         e = b + (i+1)*(size//MAX_CORES)
-        p_args.append(np.arange(s,e), dirs, tensor, size)
+        p_args.append((np.arange(s,e), dirs, tensor, size))
 
     p.starmap(extract, p_args)
     p.close()

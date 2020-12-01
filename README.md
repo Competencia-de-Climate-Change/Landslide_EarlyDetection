@@ -122,7 +122,7 @@ Machine Learning Research Project: Landslide Risk based Early Detection
 
 ### Bucket
 
-* url : `gs://data-projectx`
+* url : `https://console.cloud.google.com/storage/browser/data-projectx/processed_data`
 
 ```{Python}
 !pip install fsspec

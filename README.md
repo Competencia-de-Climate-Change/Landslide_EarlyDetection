@@ -1,9 +1,12 @@
 # Landslide EarlyDetection
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/Competencia-de-Climate-Change/Landslide_EarlyDetection/master)
 
-Machine Learning Research Project: Landslide Risk based Early Detection
+Machine Learning Research Project: Landslide Early Detection from Satellite Data
 
 ## Data
+
+Our dataset can be found at the following <a href="`https://console.cloud.google.com/storage/browser/data-projectx/processed_data`">link</a>
+
 
 `products = ReMasFrame.get_products()`
 

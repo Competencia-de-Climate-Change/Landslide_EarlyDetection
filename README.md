@@ -5,7 +5,7 @@ Machine Learning Research Project: Landslide Early Detection from Satellite Data
 
 ## Data
 
-Our dataset can be found at the following <a href="`https://console.cloud.google.com/storage/browser/data-projectx/processed_data`">link</a>
+Our dataset can be found at the following <a href="https://console.cloud.google.com/storage/browser/data-projectx/processed_data">link</a>
 
 
 `products = ReMasFrame.get_products()`
@@ -111,8 +111,7 @@ Our dataset can be found at the following <a href="`https://console.cloud.google
 ## Google Compute Engine
 ### Instance 
 
-* ssh personal: `gcloud beta compute ssh --zone "us-east1-d" "projectx-training-uch" --project "projectx-uch"`
-* ssh jupyter: `gcloud beta compute ssh --zone "us-east1-d" "jupyter@projectx-training-uch" --project "projectx-uch"`
+If you have been given access to the GCP project `projectx-uch`, you can find the compute instances.
 
 ### Bucket
 
@@ -146,5 +145,5 @@ Gives access to satellite data and `Workbench` (4vCPUs, 13GB~RAM, optional GPU)
 
 ## Credentials
 
-If you need to access use your given email (usually @ug.uchile.cl)
+If you need to access use your given email (usually an academic one)
 

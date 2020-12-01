@@ -24,15 +24,6 @@ Our dataset can be found at the following <a href="`https://console.cloud.google
   </thead>
   <tbody>
     <tr>
-      <td>ejemplo</td>
-      <td><pre>weather</pre></td>
-      <td><pre>codigo</pre></td>
-      <td>NO</td>
-      <td><a href="examples/remasframe_01.ipynb">Notebook Link</a></td>
-      <td>X.XX</td>
-      <td>probar xxx </td>
-    </tr>
-    <tr>
       <td>goes17:fulldisk:v1</td>
       <td><pre>weather</pre></td>
       <td><pre>products['weather']['goes']</pre></td>
